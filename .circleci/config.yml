@@ -1,0 +1,14 @@
+version: 2
+jobs:
+  build:
+    working_directory: /dockerapp
+    docker:
+      - image: docker:18.06.1-ce-git
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run: |
+          TAG=$CIRCLE_BRANCH
+          docker build -t  danielcooper/libtensorflow_musl:$TAG .
+          docker login -u $DOCKER_USER -p $DOCKER_PASS
+          docker push danielcooper/libtensorflow_musl:$TAG

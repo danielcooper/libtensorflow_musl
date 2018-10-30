@@ -55,7 +55,7 @@ RUN cd /tmp \
     && curl -SL https://github.com/tensorflow/tensorflow/archive/v${TENSORFLOW_VERSION}.tar.gz \
       | tar xzf -
 
-ENV LOCAL_RESOURCES 2048,0.5,1.0
+ENV LOCAL_RESOURCES 6144,2,1.0
 # Build Tensorflow
 RUN cd /tmp/tensorflow-${TENSORFLOW_VERSION} \
   && : musl-libc does not have "secure_getenv" function \
